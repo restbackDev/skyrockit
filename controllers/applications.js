@@ -37,4 +37,25 @@ router.post('/', async (req,res) => {
   }
 });
 
+// GET /users/:userId/applications/:applicationId
+router.get('/:applicationId', async (req,res) => {
+  try {
+    // look up the user that's currently logged in
+    const currentUser = await User.findById(req.session.user._id);
+    // find the subdocument in the currently logged in user's applications list
+    const application = currentUser.applications.id(req.params.applicationId);
+    //render a show template with the sub-document's details
+    res.render('applications/show.ejs', {
+      application // property shorthand syntax whenever the prop name and variable
+      //name holding the value are the saem
+    })
+
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+
+
+})
+
 module.exports = router;

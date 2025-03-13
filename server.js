@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 // app.use(morgan('dev'));
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
+  session({ //creates a session object& session cookie to the browser
+    secret: process.env.SESSION_SECRET, //the key to unlock the cookies w/c are user info/id using the SEESION SEC via .env
     resave: false,
     saveUninitialized: true,
   })
