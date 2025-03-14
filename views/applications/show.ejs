@@ -12,13 +12,25 @@
     <!-- notes -->
     <% if (application.notes) { %>
     <p>Notes: <%= application.notes %></p>
+    <% } %>
     
     <!-- posting link -->
-    <% } %> <% if (application.postingLink) { %>
+    <% if (application.postingLink) { %>
     <a href="<%= application.postingLink %>" target="_blank">View job posting</a>
     <% } %>
     
     <!-- status -->
     <p>Current Status: <%= application.status %></p>
+    
+    <a href="/users/<%= user._id %>/applications/<%= application._id %>/edit">
+      Edit this application
+    </a>
+
+    <!-- delete link -->
+    <form action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE" method="post">
+      <button type="submit">Delete this application</button>
+    </form>
+
+
   </body>
 </html>
